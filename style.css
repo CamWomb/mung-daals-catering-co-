@@ -1,0 +1,56 @@
+/* Page chrome only — the game itself renders on canvas (WebGL + 2D HUD). */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  height: 100%;
+  background: #1a1226 radial-gradient(circle at 50% 30%, #2c1e4a, #120c1c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comic Sans MS", "Chalkboard SE", "Segoe Print", sans-serif;
+}
+#wrap {
+  text-align: center;
+}
+#stage {
+  position: relative;
+  /* fixed 960x600 logical resolution, scaled to fit the window */
+  width: min(960px, 96vw, 152vh);
+  aspect-ratio: 960 / 600;
+  margin: 0 auto;
+  border: 4px solid #231634;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  background: #000;
+}
+#stage canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#game3d { z-index: 1; }
+#game {
+  z-index: 2;
+  background: transparent; /* HUD overlay: 3D shows through */
+  cursor: pointer;
+}
+#hint {
+  color: #8a7aa0;
+  font-size: 13px;
+  margin-top: 10px;
+  user-select: none;
+}
+#rotate {
+  display: none;
+  color: #ffd94a;
+  font-size: 14px;
+  margin-top: 8px;
+  user-select: none;
+}
+@media (orientation: portrait) and (max-width: 700px) {
+  #rotate { display: block; }
+  #hint { display: none; }
+}
